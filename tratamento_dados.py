@@ -15,8 +15,8 @@ df['sexo'] = df['sexo'].str.strip().str.lower().map(sexo_map)
 df['nota_matematica'] = df['nota_matematica'].astype(str).str.replace(',', '.').astype(float)
 df['nota_portugues'] = df['nota_portugues'].astype(str).str.replace(',', '.').astype(float)
 
-# Calcula média
-df['media'] = (df['nota_matematica'] + df['nota_portugues'] + (df['frequencia'] / 10)) / 3
+# Calcula média e arredondei para uma casa decimal
+df['media'] = ((df['nota_matematica'] + df['nota_portugues'] + (df['frequencia'] / 10)) / 3).round(1)
 
 # Adiciona coluna de aprovação
 df['aprovado'] = df['media'].apply(lambda x: 'Sim' if x >= 7 else 'Não')
